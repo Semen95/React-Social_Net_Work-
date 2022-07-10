@@ -8,7 +8,8 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import ProFile from "./components/Profile/ProFile";
 
 
-const App = () => {
+const App = (props) => {
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -16,8 +17,12 @@ const App = () => {
                 <NavBar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='profile/' element={<ProFile/>}/>
-                        <Route path='dialogs/*' element={<Dialogs/>}/>
+                        <Route path='dialogs/*' element={
+                            <Dialogs dialogs={props.dialogs} messages={props.messages}/>
+                        }/>
+                        <Route path='profile/' element={
+                            <ProFile posts={props.posts}/>
+                        }/>
                     </Routes>
                 </div>
             </div>
